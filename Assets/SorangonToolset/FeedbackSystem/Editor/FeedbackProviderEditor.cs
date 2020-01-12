@@ -32,7 +32,7 @@ namespace SorangonToolset.FeedbackSystem.EditorCustom {
 		private readonly GUIContent _addEventContent = new GUIContent("Add event", "Add a new event to the list");
 		private readonly GUIContent _removeEventContent = new GUIContent("x", "Removes this event from the list");
 		private readonly GUIContent _eventNameContent = new GUIContent("Name", "The name of the event you would call");
-		private readonly GUIContent _eventFeedbackContent = new GUIContent("Fedback", "The target feedback of the event");
+		private readonly GUIContent _eventFeedbackContent = new GUIContent("Feedback", "The target feedback of the event");
 		#endregion
 
 		#region Callbacks
@@ -48,16 +48,15 @@ namespace SorangonToolset.FeedbackSystem.EditorCustom {
 				DrawFeedbackEvent(i);
 			}
 
-			GUILayout.Space(6f);
+			GUILayout.BeginHorizontal();
+			EditorGUILayout.LabelField("");//Empty label to align the button on the right
 			if (GUILayout.Button(_addEventContent, GUILayout.Width(100f))) {
 				_eventsArray.InsertArrayElementAtIndex(_eventsArray.arraySize);
 			}
+			GUILayout.EndHorizontal();
 
 			serializedObject.ApplyModifiedProperties();
 		}
-		#endregion
-
-		#region Contents
 		#endregion
 
 		#region Events
