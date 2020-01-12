@@ -6,8 +6,8 @@ namespace SorangonToolset.FeedbackSystem {
 	/// <summary>
 	/// Contains multiple feedbacks event that can be called
 	/// </summary>
-	[AddComponentMenu("Sorangon Toolset/Feedback System/Feedback Provider")]
-	public class FeedbackProvider : MonoBehaviour {
+	[AddComponentMenu("Sorangon Toolset/Feedback System/Feedback Event System")]
+	public class FeedbackEventSystem : MonoBehaviour {
 		#region SubClasses
 		[System.Serializable]
 		public class FeedbackEvent {
@@ -32,7 +32,6 @@ namespace SorangonToolset.FeedbackSystem {
 		}
 #endif
 		#endregion
-
 
 		#region Properties
 		[SerializeField] private FeedbackEvent[] _feedbackEvents = { };
