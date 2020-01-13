@@ -12,7 +12,7 @@ Create a `Feedback` asset ("Create/Feedback") and refer a target `Particle Syste
 
 ![Feedback inspector](./Documentation/img_feedbackInspector.PNG)
 
-Add a `Feedback Event System` component on the target `Game Object`<br>
+Add a `Feedback Event System` component on the target `Game Object` and add the event you want to call and their feedback asset<br>
 
 ![Feedback Event Manager](./Documentation/gif_feedbackEventSystem.gif)
 
