@@ -4,6 +4,8 @@
 
 The feedback system allow you to integrate and call feedbacks containing <b>visual and sound effects</b> easily with `Feedback` assets and `Feedback Event System` component.
 
+![DemoGif](./Documentation/gif_feedbackSystemDemo.gif)
+
 &nbsp;
 
 ## How to setup a feedback
