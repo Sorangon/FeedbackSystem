@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SorangonToolset.FeedbackSystem {
 	/// <summary>
@@ -25,6 +23,13 @@ namespace SorangonToolset.FeedbackSystem {
 		#endregion
 
 		#region Callbacks
+		private void Awake() {
+			//Initializes feedback audio source to gain performances
+			if (!Feedback.IsAudioSourceInitialized) {
+				Feedback.InitAudioSource();
+			}
+		}
+
 #if UNITY_EDITOR
 		private void Reset() {
 			//Creates at least one feedback event when the component is created
@@ -61,4 +66,3 @@ namespace SorangonToolset.FeedbackSystem {
 		#endregion
 	}
 }
-

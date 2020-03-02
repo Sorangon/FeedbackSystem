@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1263ece48ec71d947a4b757517873398, type: 3}
+  m_Name: FB_Buff
+  m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 8378453651592172299, guid: 26e06c115571ffe4898eb45c68471fb5,
+    type: 3}
+  _scaleMultiplier: 1
+  _followOwnerRotation: 0
+  _soundEffect: {fileID: 8300000, guid: 91b306236e5264a40be920ea7c4ccb76, type: 3}
+  _volume: 1
+  _randomPitchRange: {x: 0.9, y: 1.1}
+  _spatialBlend: 0.5
+  _parentToOwner: 0

@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
-using SorangonToolset.FeedbackSystem;
 
 namespace SorangonToolset.FeedbackSystem.EditorCustom {
 	[CustomEditor(typeof(FeedbackEventSystem))]
-	public class FeedbackEventSystemEditor : Editor {
+	public class FeedbackEventSystemInspector : Editor {
 		#region Serialized Properties
 		private SerializedProperty _eventsArray = null;
 		#endregion

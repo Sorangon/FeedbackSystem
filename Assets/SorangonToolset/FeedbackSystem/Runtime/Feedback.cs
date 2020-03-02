@@ -6,7 +6,7 @@ namespace SorangonToolset.FeedbackSystem {
 	/// </summary>
 	[CreateAssetMenu(menuName = "Feedback", fileName = "NewFeedback", order = 800)]
 	public class Feedback : ScriptableObject {
-		#region Properties
+		#region Settings
 		[Header("Visual Effect")]
 		[SerializeField, Tooltip("The target particle system to instantiate")]
 		private ParticleSystem _particleSystem = null;
@@ -35,25 +35,26 @@ namespace SorangonToolset.FeedbackSystem {
 		private bool _parentToOwner = false;
 		#endregion
 
-		#region Accessors
-		private AudioSource _source {
+		#region Properties
+		private FeedbackAudioSource _source {
 			get {
 				if (_sourceInstance == null) {
-					_sourceInstance = InitAudioSource();
+					InitAudioSource();
 				}
 
 				return _sourceInstance;
 			}
 		}
+
+		/// <summary>Checks if the feedback audio source were initialized</summary>
+		internal static bool IsAudioSourceInitialized => _sourceInstance != null;
 		#endregion
 
 		#region Current
-		private static AudioSource _sourceInstance;
+		private static FeedbackAudioSource _sourceInstance;
 		#endregion
 
 		#region Feedback Execution
-
-
 
 		/// <summary>
 		/// Plays a feedback at a position and a rotation in world space
@@ -76,15 +77,13 @@ namespace SorangonToolset.FeedbackSystem {
 
 			//Instantiates a one shot audio source
 			if (_soundEffect != null) {
-				AudioSource sfxInstance = Instantiate(_source, position, Quaternion.identity, parent);
-				sfxInstance.clip = _soundEffect;
-				sfxInstance.pitch = Random.Range(_randomPitchRange.x, _randomPitchRange.y);
-				sfxInstance.volume = _volume;
-				sfxInstance.spatialBlend = _spatialBlend;
-				sfxInstance.Play();
-
-				//Sends a message to the AutoDestroyer to lauch the timer
-				sfxInstance.BroadcastMessage("Launch", _soundEffect.length);
+				FeedbackAudioSource sfxInstance = Instantiate(_source, position, Quaternion.identity, parent);
+				sfxInstance.GetSource();
+				sfxInstance.Source.clip = _soundEffect;
+				sfxInstance.Source.pitch = Random.Range(_randomPitchRange.x, _randomPitchRange.y);
+				sfxInstance.Source.volume = _volume;
+				sfxInstance.Source.spatialBlend = _spatialBlend;
+				sfxInstance.Play(_soundEffect.length);
 			}
 		}
 
@@ -100,16 +99,18 @@ namespace SorangonToolset.FeedbackSystem {
 		#endregion
 
 		#region Audio Source
-		private AudioSource InitAudioSource() {
+		/// <summary>
+		/// Initializes the feedback audio source object
+		/// </summary>
+		internal static void InitAudioSource() {
+			if (_sourceInstance != null) return;
+
 			GameObject sourceGO = new GameObject("One Shot Audio Source");
-			AudioSource source = sourceGO.AddComponent<AudioSource>();
-			sourceGO.gameObject.AddComponent<FeedbackAutoDestroyer>();
-			source.playOnAwake = false;
-			source.loop = false;
+			FeedbackAudioSource source = sourceGO.gameObject.AddComponent<FeedbackAudioSource>();
+			source.Init();
 			DontDestroyOnLoad(sourceGO);
-			return source;
+			_sourceInstance = source;
 		}
 		#endregion
 	}
-
 }
