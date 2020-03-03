@@ -29,7 +29,7 @@ using UnityEngine;
 using SorangonToolset.FeedbackSystem;
 
 public class Wizard : MonoBehaviour {
-    [SerializedField] private Feedback _healFeedback = null;
+    [SerializeField] private Feedback _healFeedback = null;
 
     public void OnHeal(){
         _healFeedback.Play(transform.position, Quaternion.identity);
